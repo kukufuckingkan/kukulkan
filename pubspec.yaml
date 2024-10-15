@@ -72,12 +72,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - profiles/local/application_local_android.yaml
-    - profiles/dev/application_dev_ios.yaml
-    - profiles/dev/application_dev_web.yaml
-    - profiles/local/application_local_android.yaml
-    - profiles/local/application_local_ios.yaml
-    - profiles/local/application_local_web.yaml   
+    - profiles/local/application_android.yaml
+    - profiles/local/application_ios.yaml
+    - profiles/local/application_web.yaml  
+    - profiles/dev/application_web.yaml     
   
   
 

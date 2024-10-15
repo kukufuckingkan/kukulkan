@@ -14,7 +14,7 @@ Future<void> main() async {
 
 const String activeProfile = String.fromEnvironment('ACTIVE_PROFILE', defaultValue: 'local');
 
-const String environment = String.fromEnvironment('ACTIVE_PROFILE', defaultValue: 'web');
+const String environment = String.fromEnvironment('ACTIVE_PROFILE', defaultValue: 'android');
    
 await AppProfileConfig.load(activeProfile,environment);
 
