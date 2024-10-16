@@ -1,14 +1,15 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:nukuke/response/base_response.dart';
 
 import 'definition_response.dart';
 import 'language_response.dart';
 
 part 'translation_response.g.dart';
 
-@JsonSerializable(includeIfNull: true, ignoreUnannotated: false)
+@JsonSerializable(includeIfNull: true, ignoreUnannotated: false,nullable: true)
 class TranslationResponse {
-  @JsonKey(includeIfNull: true,defaultValue: '')
-  final String root;
+  @JsonKey(includeIfNull: true,defaultValue: null,required: false)
+  final BaseResponse ? root;
   final String sku;
   final DateTime createDate;
   final DateTime updateDate;
@@ -17,6 +18,7 @@ class TranslationResponse {
   final LanguageResponse language;
   final List<DefinitionResponse> definitions;
   final String word;
+
 
   @JsonKey(includeIfNull: true,defaultValue: '')
   final String sound;

@@ -25,12 +25,16 @@ class TranslationScreen extends ConsumerWidget {
             return Text(state.error);
           }
           var translations = state.translations;
-          return ListView.builder(
-            itemCount: translations.length,
-            itemBuilder: (context, index) {
-              var translation = translations[index];
-              return TranslationWidget(translation: translation);
-            },
+          return SingleChildScrollView(
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: translations.length,
+              itemBuilder: (context, index) {
+                var translation = translations[index];
+                return TranslationWidget(translation: translation);
+              },
+            ),
           );
         }))
       ],

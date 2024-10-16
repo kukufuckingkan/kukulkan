@@ -11,7 +11,9 @@ TranslationResponse _$TranslationResponseFromJson(Map<String, dynamic> json) =>
       definitions: (json['definitions'] as List<dynamic>)
           .map((e) => DefinitionResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
-      root: json['root'] as String? ?? '',
+      root: json['root'] == null
+          ? null
+          : BaseResponse.fromJson(json['root'] as Map<String, dynamic>),
       sku: json['sku'] as String,
       createDate: DateTime.parse(json['createDate'] as String),
       updateDate: DateTime.parse(json['updateDate'] as String),

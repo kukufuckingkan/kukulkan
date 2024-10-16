@@ -49,6 +49,7 @@ class MainApp extends ConsumerWidget {
     String yamlString = await rootBundle.loadString(configFile);
     var yaml = loadYaml(yamlString);
     var res = Map<String, dynamic>.from(yaml);
+    log("profile properties are $res");
     appProperties = res;
     return res;
     }
