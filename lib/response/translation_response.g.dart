@@ -21,7 +21,10 @@ TranslationResponse _$TranslationResponseFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String,
       language:
           LanguageResponse.fromJson(json['language'] as Map<String, dynamic>),
-      sound: json['sound'] as String? ?? '',
+      sound: json['sound'] == null
+          ? null
+          : TranslationSoundResponse.fromJson(
+              json['sound'] as Map<String, dynamic>),
       word: json['word'] as String,
     );
 
@@ -29,6 +32,7 @@ Map<String, dynamic> _$TranslationResponseToJson(
         TranslationResponse instance) =>
     <String, dynamic>{
       'root': instance.root,
+      'sound': instance.sound,
       'sku': instance.sku,
       'createDate': instance.createDate.toIso8601String(),
       'updateDate': instance.updateDate.toIso8601String(),
@@ -37,5 +41,4 @@ Map<String, dynamic> _$TranslationResponseToJson(
       'language': instance.language,
       'definitions': instance.definitions,
       'word': instance.word,
-      'sound': instance.sound,
     };

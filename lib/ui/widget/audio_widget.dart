@@ -1,19 +1,23 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nukuke/response/base_response.dart';
+import 'package:nukuke/response/translation_sound_response.dart';
 
 import '../../controller/audio_controller.dart';
 import '../../response/sound_response.dart';
 
 
 class AudioWidget extends ConsumerWidget {
-  //late final AudioPlayer player;
-  final String sku;
+  late final AudioPlayer player;
+  final TranslationSoundResponse ? sound;
 
-  AudioWidget({super.key, required this.sku}){
-    //player = AudioPlayer();
+  AudioWidget({super.key, required this.sound}){
+    player = AudioPlayer();
   }
 
  
@@ -21,27 +25,19 @@ class AudioWidget extends ConsumerWidget {
   Widget build(context,ref) {
       // var result =   Future.microtask(() =>
       //   {ref.read(audioController.notifier).getSound(sku)});
-    if(sku.isEmpty){
-      return Icon(Icons.play_circle_fill);
+    if(sound == null){
+      return const Icon(Icons.play_circle_fill);
     }  
-
-   return FutureBuilder(initialData: SoundResponse.fromJson({}),
-    future: ref.read(audioController.notifier).getSound(sku),
-     builder: (BuildContext context, AsyncSnapshot<SoundResponse> snapshot) { 
-      if(snapshot.hasData && snapshot.data != null){
-        var soundByte = Uint8List.fromList(utf8.encode(snapshot.data!.data));
       return ElevatedButton.icon(
         onPressed: () async {
-        //var source = BytesSource(soundByte);
-       // await player.play(source);
+          
+        var response = await  ref.read(audioController.notifier).getSoundByOrdinal(sound!.ordinal);
+        var soundBytes = base64.decode(response.data); 
+        //var soundByte = Uint8List.fromList(utf8.encode(response.data));
+        var source = BytesSource(soundBytes);
+       await player.play(source);
       },
-      icon: Icon(Icons.play_circle_fill),
-       label: Text('player'));
-      }
-      else{
-        return Text("no sound");
-      }
-      } ,
-    );
+      icon: const Icon(Icons.queue_music),
+       label: const Text('player'));
   }
 }

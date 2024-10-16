@@ -3,13 +3,18 @@ import 'package:nukuke/response/base_response.dart';
 
 import 'definition_response.dart';
 import 'language_response.dart';
+import 'translation_sound_response.dart';
 
 part 'translation_response.g.dart';
 
 @JsonSerializable(includeIfNull: true, ignoreUnannotated: false,nullable: true)
 class TranslationResponse {
+
   @JsonKey(includeIfNull: true,defaultValue: null,required: false)
   final BaseResponse ? root;
+
+    @JsonKey(includeIfNull: true,defaultValue: null,required: false)
+  final TranslationSoundResponse ? sound;
   final String sku;
   final DateTime createDate;
   final DateTime updateDate;
@@ -19,10 +24,6 @@ class TranslationResponse {
   final List<DefinitionResponse> definitions;
   final String word;
 
-
-  @JsonKey(includeIfNull: true,defaultValue: '')
-  final String sound;
-  //final List<String> image;
 
   TranslationResponse({
     required this.definitions,

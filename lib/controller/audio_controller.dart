@@ -13,8 +13,14 @@ class AudioController extends StateNotifier<AudioState> {
 
    AudioController(this.ref) : super(AudioState.initial());
 
- Future<SoundResponse>  getSound(String sku) async{
+ Future<SoundResponse>  getSoundBySku(String sku) async{
   var response = ref.read(audioService).fetchBySku(sku);
+  return response;
+ }
+
+
+ Future<SoundResponse>  getSoundByOrdinal(int ordinal) async{
+  var response = ref.read(audioService).fetchByOrdinal(ordinal);
   return response;
  }
 }

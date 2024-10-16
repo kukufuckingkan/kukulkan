@@ -25,6 +25,19 @@ class AudioService {
     }
   }
 
+    Future<SoundResponse> fetchByOrdinal(int ordinal) async {
+    try {
+      var response = await ref.read(audioApi).findByOrdinal(ordinal);
+      return response;
+    } on DioException catch (e) {
+          log(e.toString());
+      throw Exception(e);
+    } on SocketException catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
+
 }
 
 final audioService =

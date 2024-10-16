@@ -35,7 +35,7 @@ class TranslationWidget extends ConsumerWidget {
                           flex: 1,
                           child: Column(
                             children: [
-                              AudioWidget(sku: sound),
+                              AudioWidget(sound: sound),
                             ],
                           ),
                         ),

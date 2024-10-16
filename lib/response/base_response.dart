@@ -11,6 +11,7 @@ class BaseResponse {
   final int version;
 
 
+
   BaseResponse({
    required this.sku,
     required this.createDate,

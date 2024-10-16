@@ -10,9 +10,8 @@ import '../response/sound_response.dart';
 part 'audio_api.g.dart';
 
 class EndPoint {
-      static const fetchbyText = "/word/text/ߊ";
-      static const fetchAll = "/word";
-       static const findBySku = "/audio/sku{sku}";
+       static const findBySku = "/sound/sku/{sku}";
+      static const findByOrdinal = "/sound/ordinal/{ordinal}";
 }
 
 @RestApi(baseUrl: 'http://192.168.0.95:8050')
@@ -24,6 +23,9 @@ abstract class AudioApi {
 
   @GET(EndPoint.findBySku)
   Future<SoundResponse> findBySku(@Path("sku") String sku);
+
+    @GET(EndPoint.findByOrdinal)
+  Future<SoundResponse> findByOrdinal(@Path("ordinal") int ordinal);
 }
 
 
