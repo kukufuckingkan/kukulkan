@@ -1,15 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nukuke/response/base_response.dart';
 import 'package:nukuke/response/translation_sound_response.dart';
 
 import '../../controller/audio_controller.dart';
-import '../../response/sound_response.dart';
 
 
 class AudioWidget extends ConsumerWidget {
@@ -26,7 +22,7 @@ class AudioWidget extends ConsumerWidget {
       // var result =   Future.microtask(() =>
       //   {ref.read(audioController.notifier).getSound(sku)});
     if(sound == null){
-      return const Icon(Icons.play_circle_fill);
+      return const Icon(Icons.no_accounts);
     }  
       return ElevatedButton.icon(
         onPressed: () async {

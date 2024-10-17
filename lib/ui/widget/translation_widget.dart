@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nukuke/ui/widget/image_widget.dart';
 
 import '../../response/translation_response.dart';
 import 'audio_widget.dart';
@@ -31,6 +32,12 @@ class TranslationWidget extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+
+                          const Flexible(
+                          flex: 1,
+                          child: ImageWidget(1),
+                        ),
+                        
                         Expanded(
                           flex: 1,
                           child: Column(
@@ -39,17 +46,20 @@ class TranslationWidget extends ConsumerWidget {
                             ],
                           ),
                         ),
-                       // ImageWidget(translation.word),
-                                 Expanded(
+                        // ImageWidget(translation.word),
+                        Expanded(
                           flex: 1,
                           child: Column(
                             children: [
-                             DefinitionWiget(sku: '',definitions: translation.definitions,),
+                              DefinitionWiget(
+                                sku: '',
+                                definitions: translation.definitions,
+                              ),
                             ],
                           ),
                         ),
                         Expanded(
-                           flex: 1,
+                          flex: 1,
                           child: Column(
                             children: [
                               Text(translation.text),

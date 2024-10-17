@@ -1,21 +1,26 @@
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'image_response.g.dart';
 
 @JsonSerializable()
 class ImageResponse {
-  // @JsonValue(200)
   final String sku;
-  final double ordinal;
-  final int? version;
+  final DateTime createDate;
+  final DateTime updateDate;
+  final int version;
+  final String data;
+  final int fileId;
 
-  ImageResponse( {
+  ImageResponse({
    required this.sku,
-   required this.ordinal,
-    this.version,
+   required this.createDate,
+   required this.updateDate,
+   required this.version,
+   required this.data,
+   required this.fileId
   });
 
-  factory ImageResponse.fromJson(Map<String, dynamic> json) => _$ImageResponseFromJson(json);
+  factory ImageResponse.fromJson(Map<String, dynamic> json) =>
+      _$ImageResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ImageResponseToJson(this);
 }
