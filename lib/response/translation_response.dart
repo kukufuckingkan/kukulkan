@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:nukuke/response/base_response.dart';
+import 'package:nukuke/response/image_response.dart';
+import 'package:nukuke/response/word_image_response.dart';
 
 import 'definition_response.dart';
 import 'language_response.dart';
@@ -7,7 +9,7 @@ import 'translation_sound_response.dart';
 
 part 'translation_response.g.dart';
 
-@JsonSerializable(includeIfNull: true, ignoreUnannotated: false,nullable: true)
+@JsonSerializable(includeIfNull: false, ignoreUnannotated: false,nullable: true)
 class TranslationResponse {
 
   @JsonKey(includeIfNull: true,defaultValue: null,required: false)
@@ -15,6 +17,7 @@ class TranslationResponse {
 
     @JsonKey(includeIfNull: true,defaultValue: null,required: false)
   final TranslationSoundResponse ? sound;
+  final List<WordImageResponse> image;
   final String sku;
   final DateTime createDate;
   final DateTime updateDate;
@@ -22,10 +25,13 @@ class TranslationResponse {
   final String text;
   final LanguageResponse language;
   final List<DefinitionResponse> definitions;
-  final String word;
+
+    @JsonKey(includeIfNull: true,defaultValue: null,required: false)
+  final BaseResponse ? word;
 
 
   TranslationResponse({
+    required this.image,
     required this.definitions,
    required this.root,
    required this.sku,
@@ -35,7 +41,6 @@ class TranslationResponse {
    required this.text,
    required this.language,
    required this.sound,
-   //required this.image,
    required this.word
   });
 

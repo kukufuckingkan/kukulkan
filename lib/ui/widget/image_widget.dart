@@ -2,17 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nukuke/response/word_image_response.dart';
 
 import '../../controller/image_controller.dart';
 
 class ImageWidget extends ConsumerWidget {
-  final int ordinal;
-  const ImageWidget(this.ordinal, {super.key});
+  final List<WordImageResponse> images;
+  const ImageWidget(this.images, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if(images.isEmpty){
+      return Text('no image');
+    }
+    var firstImage = images[0];
     return FutureBuilder(
-      future: ref.read(imageController.notifier).getByOrdinal(1), // Your async function
+      future: ref.read(imageController.notifier).getByOrdinal(firstImage.ordinal), // Your async function
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();  // Show loading indicator

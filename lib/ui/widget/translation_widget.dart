@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nukuke/ui/widget/image_widget.dart';
 
 import '../../response/translation_response.dart';
@@ -16,6 +17,7 @@ class TranslationWidget extends ConsumerWidget {
   @override
   Widget build(context, ref) {
     var sound = translation.sound;
+    var images = translation.image;
 
     return Consumer(builder: (ctx, ref, widget) {
       return Card(
@@ -33,9 +35,9 @@ class TranslationWidget extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
 
-                          const Flexible(
+                           Flexible(
                           flex: 1,
-                          child: ImageWidget(1),
+                          child: ImageWidget(images),
                         ),
                         
                         Expanded(
@@ -62,7 +64,8 @@ class TranslationWidget extends ConsumerWidget {
                           flex: 1,
                           child: Column(
                             children: [
-                              Text(translation.text),
+                              Text(translation.text,style: GoogleFonts.notoSansNKo(),),
+                              //Text('ߞߊ ߞߏ ߘߏ ߝߐ')
                             ],
                           ),
                         ),

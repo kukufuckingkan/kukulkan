@@ -8,6 +8,9 @@ part of 'translation_response.dart';
 
 TranslationResponse _$TranslationResponseFromJson(Map<String, dynamic> json) =>
     TranslationResponse(
+      image: (json['image'] as List<dynamic>)
+          .map((e) => WordImageResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
       definitions: (json['definitions'] as List<dynamic>)
           .map((e) => DefinitionResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -25,7 +28,9 @@ TranslationResponse _$TranslationResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : TranslationSoundResponse.fromJson(
               json['sound'] as Map<String, dynamic>),
-      word: json['word'] as String,
+      word: json['word'] == null
+          ? null
+          : BaseResponse.fromJson(json['word'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TranslationResponseToJson(
@@ -33,6 +38,7 @@ Map<String, dynamic> _$TranslationResponseToJson(
     <String, dynamic>{
       'root': instance.root,
       'sound': instance.sound,
+      'image': instance.image,
       'sku': instance.sku,
       'createDate': instance.createDate.toIso8601String(),
       'updateDate': instance.updateDate.toIso8601String(),
